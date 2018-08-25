@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fetching GitHub Users Data</title>
+    <style>
+       #c1 {
+           background-color: beige;
+           display: inline-block;
+       }
+    </style>
+</head>
+<body>
+    <h1>GitHub Users</h1>
+    <button id="b0" onclick="getInfo()">Load GitHub Users</button><hr>
+    <div id="c1">
+        <span id="b1"></span><br>
+        <span id="b2"></span><br>
+        <span id="b3"></span><br>
+        <span id="b4"></span><br>
+        <span id="b5"></span><br>
+    </div>
+    <script>
+        const dataUrl = "https://api.github.com/users/abdillahi09";
+        function getInfo(){
+            fetch(dataUrl)
+                .then(response => response.json())
+                .then(products => {
+                    document.getElementById("b1").innerHTML="Name: " + JSON.stringify(products.name)
+                    document.getElementById("b2").innerHTML="Login ID: " + JSON.stringify(products.login)
+                    document.getElementById("b3").innerHTML="Picture Link: " + JSON.stringify(products.avatar_url)
+                    document.getElementById("b4").innerHTML="Public Profile: " + JSON.stringify(products.html_url)
+                    document.getElementById("b5").innerHTML="Last Update: " + JSON.stringify(products.updated_at)
+                }).catch(err => console.log("ERROR"));
+            }
+    </script>
+</body>
+</html>
